@@ -2,7 +2,7 @@
 
 int main()
 {
-	//ввод зашифрованого сообщения
+	//Enter a message
 	cout << "Enter message to encrypt, press \"ENTER\" between sentences. (Ctrl-Z to stop): ";
 	string messageToEncrypt, message;
 	while (getline(cin, message))
@@ -10,34 +10,35 @@ int main()
 
 	cin.clear();
 	
-	//ввод ключа шифрования
+	//Enter the encryption key
 	cout << "Enter key to encrypt ( -99999 - 99999): ";
 	int keyEncrypt = 100000;
 	cin >> keyEncrypt;
-	//проверка на правильность ввода
+	//Checking encryption key
 	check(keyEncrypt);
 	
 	cin.clear();
-	//ввод мощночти алфавита
+	//Enter power alphabets
 	cout << "Enter power alphabet (0 - 255): ";
 	unshint powerKey = -1;
 	cin >> powerKey;
-	//проверка на правильность ввода
+	//Check the power of the alphabet
 	checkKey(powerKey, keyEncrypt);
 
-	//шифрование сообщения
+	//Encrypting messages
 	Encrypt(messageToEncrypt, keyEncrypt);
 	
 	cin.clear();
 	cin.ignore();
-	//ввод файла сохранения зашифрованого сообщения
+	//Enter filename
 	cout << "Enter filename to save: ";
 	string FileName;
 	getline(cin, FileName);
-	//проверка на ввода названия файла сохранения
+	//Check for no input file name
 	if (FileName == "")
 		FileName = "New File";
 	int inSize = FileName.size();
+	//Removing invalid characters
 	ErazeSymbol(FileName);
 	if (FileName.size() < inSize)
 	{
@@ -49,7 +50,7 @@ int main()
 
 	cin.clear();
 	
-	//проверка на правильность ввода пути сохранения папки
+	//Recording an encrypted message to a file
 	CheckPath(FileName, messageToEncrypt);
 	
 	cin.get();
