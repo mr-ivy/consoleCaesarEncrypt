@@ -6,7 +6,7 @@ using namespace std;
 
 typedef unsigned short int unshint;
 
-//шифрование сообщения
+//Encrypting messages
 void Encrypt(string& messageToEncrypt, const int& keyEncrypt)
 {
 	string copyMessage, encryptMessage;
@@ -24,7 +24,7 @@ void Encrypt(string& messageToEncrypt, const int& keyEncrypt)
 	messageToEncrypt = encryptMessage;
 }
 
-//проверка мощности алфавита
+//Check the encryption key in the overflow, the valid values and input characters
 void checkKey(unshint& powerKey, int& keyEncrypt)
 {
 	while (!(powerKey >= 0 && powerKey <= 255))
@@ -37,7 +37,7 @@ void checkKey(unshint& powerKey, int& keyEncrypt)
 	keyEncrypt %= powerKey;
 }
 
-//проверка ключа шифрования
+//Check the power of the alphabet on the overflow, the valid values and input characters
 void check(int& keyEncrypt)
 {
 	while (!(keyEncrypt > -100000 && keyEncrypt < 100000))
@@ -49,7 +49,7 @@ void check(int& keyEncrypt)
 	}
 }
 
-//проверка на недопустимые символы
+//Check to enter invalid characters in the file name and delete them
 void ErazeSymbol(string& Input)
 {
 	string findSymbol("<>/\\|\"*?:");
@@ -65,7 +65,7 @@ void ErazeSymbol(string& Input)
 	}
 }
 
-//проверка на правильность ввода пути папки
+//Checking the admissibility of the way to save the file
 void CheckPath(const string& FileName, const string& messageToEncrypt)
 {
 	char UserSelection = 'n';
@@ -76,17 +76,17 @@ void CheckPath(const string& FileName, const string& messageToEncrypt)
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		}
-		//ввод пути сохранения файла
+		
 		cout << "Enter path to save file(as C:/Users/Public/Documents: ";
 		string FolderFilename;
 
 		getline(cin, FolderFilename);
-		//проверка на ввод названия пути папки сохранения
+		//Check for input path
 		if (FolderFilename == "")
 			FolderFilename = "C:/Users/Public/Documents";
 		FolderFilename += "/" + FileName;
 
-		//запись шифрованого сообщения в файл
+		//file creation
 		ofstream file(FolderFilename, ios_base::out);
 		if (file.is_open())
 		{
